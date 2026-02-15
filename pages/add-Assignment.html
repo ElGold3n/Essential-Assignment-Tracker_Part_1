@@ -32,6 +32,22 @@
             font-size: 1.5rem;
         }
 
+        /* Back button styling in header */
+        .back-btn {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Back button hover effect */
+        .back-btn:hover {
+            color: #a5d8ff;
+        }
+
         /* Navigation links - white text with spacing */
         .nav a {
             color: white;
@@ -154,12 +170,12 @@
 
 <!-- Header section with navigation -->
 <div class="header">
-    <h1>≡ Essential Assignment Tracker
-    </h1>
+    <a href="index.html" class="back-btn">← Back</a>
+    <h1>≡ Essential Assignment Tracker</h1>
     <div class="nav">
         <a href="index.html">Home</a>
         <a href="add-Assignment.html">Add Assignment</a>
-        <a href="#">About</a>
+        <a href="About.html">About</a>
     </div>
 </div>
 
@@ -237,39 +253,4 @@
         <button type="submit" class="save-btn">Save Assignment</button>
     </form>
 
-    <!-- Clicking Link returns to home page -->
-    <a href="index.html" class="back-link">← Back to Home</a>
-
 </div>
-
-<!-- JavaScript for status color preview functionality -->
-<script>
-    // References to the status dropdown and preview badge elements
-
-    const select = document.getElementById('statusSelect');
-    const preview = document.getElementById('statusPreview');
-
-    // Check both elements exist before adding an event listener
-
-    if (select && preview) {
-        // Listen for changes to the status dropdown
-        select.addEventListener('change', function() {
-            const val = this.value;
-            // Reset classes to base style
-            preview.className = 'status-preview';
-
-            // Appropriate color class applied based on the selected status
-
-            if (val === 'due')     preview.classList.add('status-due');
-            else if (val === 'overdue') preview.classList.add('status-overdue');
-            else if (val === 'done')    preview.classList.add('status-done');
-            else                        preview.classList.add('status-normal');
-
-            // Update preview badge text to match the selected option
-            preview.textContent = this.options[this.selectedIndex].text;
-        });
-    }
-</script>
-
-</body>
-</html>
