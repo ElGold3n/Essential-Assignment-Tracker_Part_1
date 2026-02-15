@@ -6,7 +6,7 @@
     const exportBtn = document.getElementById('exportBtn');
     const importFileInput = document.getElementById('importFileInput');
 
-    // If the main elements are missing (page doesn't include the UI), bail out gracefully.
+    // If the main elements are missing (the page doesn't include the UI), bail out gracefully.
     if(!backupBtn || !backupMenu) return;
 
     function closeMenu(){
@@ -26,6 +26,7 @@
     });
 
     // Close when clicking outside
+
     document.addEventListener('click', function(e){
         if(!backupMenu.contains(e.target) && e.target !== backupBtn) closeMenu();
     });
@@ -36,6 +37,7 @@
     });
 
     // Export localStorage as JSON
+
     if(exportBtn){
         exportBtn.addEventListener('click', function(){
             const data = {};
@@ -61,6 +63,7 @@
     }
 
     // Import: open a file picker and handle a file
+
     if(restoreBtn && importFileInput){
         restoreBtn.addEventListener('click', function(){
             importFileInput.value = null;
