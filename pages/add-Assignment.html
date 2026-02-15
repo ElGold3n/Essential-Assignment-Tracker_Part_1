@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Essential Assignment Tracker
+        - Add New Assignment</title>
+
+    <style>
+        /* General body styling - light background with standard font */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Header bar with dark background spanning full width */
+        .header {
+            background: #270f2b;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Header title styling */
+        .header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        /* Navigation links - white text with spacing */
+        .nav a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Navigation link hover effect - light blue color */
+        .nav a:hover { color: #a5d8ff; }
+
+        /* Main content container - centered with white background and shadow */
+        .content {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        /* Page heading styling */
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        /* Form table layout with spacing between rows */
+        table.form-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 12px;
+        }
+
+        /* Label column styling - fixed width with bold text */
+        table.form-table td.label {
+            width: 140px;
+            font-weight: bold;
+            vertical-align: middle;
+            color: #495057;
+        }
+
+        /* Input column with left padding for spacing */
+        table.form-table td.input {
+            padding-left: 15px;
+        }
+
+        /* Styling for all form input elements - consistent borders and padding */
+        input[type="text"],
+        input[type="date"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        /* Textarea specific styling - larger height with controlled resize */
+        textarea {
+            height: 90px;
+            resize: vertical;
+        }
+
+        /* Save button styling - green background with centered positioning */
+        button.save-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto 0;
+        }
+
+        /* Save button hover effect - darker green */
+        button.save-btn:hover {
+            background: #218838;
+        }
+
+        /* Status preview badge styling - shows selected status in real-time */
+        .status-preview {
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 6px;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        /* Status color themes - different colors for each status type */
+        .status-due     { background: #fff3cd; color: #856404; }      /* Yellow - coming up soon */
+        .status-overdue { background: #f8d7da; color: #721c24; }      /* Red - past due date */
+        .status-done    { background: #d4edda; color: #155724; }      /* Green - completed */
+        .status-normal  { background: #e2e3e5; color: #41464b; }      /* Gray - normal/planned */
+
+        /* Back link styling */
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        /* Back link hover effect - underline on hover */
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header section with navigation -->
+<div class="header">
+    <h1>≡ Essential Assignment Tracker
+    </h1>
+    <div class="nav">
+        <a href="index.html">Home</a>
+        <a href="add-Assignment.html">Add Assignment</a>
+        <a href="#">About</a>
+    </div>
+</div>
+
+<!-- Main content area -->
+<div class="content">
+
+    <h2>Add New Assignment</h2>
+
+    <!-- Form for adding a new Assignment -->
+    <form action="#" method="post">
+        <table class="form-table">
+            <!-- Assignment name input field -->
+            <tr>
+                <td class="label">Assignment Name:</td>
+                <td class="input">
+                    <input type="text" name="Assignment_name" placeholder="e.g. Finish Assignment 1" required />
+                </td>
+            </tr>
+
+            <!-- Module/Course identification field -->
+            <tr>
+                <td class="label">Module / Course:</td>
+                <td class="input">
+                    <input type="text" name="module" placeholder="e.g. COM101 / Mathematics 202" required />
+                </td>
+            </tr>
+
+            <!-- Due date picker -->
+            <tr>
+                <td class="label">Due Date:</td>
+                <td class="input">
+                    <input type="date" name="due_date" required />
+                </td>
+            </tr>
+
+            <!-- Priority level dropdown -->
+            <tr>
+                <td class="label">Priority:</td>
+                <td class="input">
+                    <select name="priority">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </td>
+            </tr>
+
+            <!-- Status dropdown with live preview -->
+            <tr>
+                <td class="label">Status:</td>
+                <td class="input">
+                    <!-- Status selection dropdown -->
+                    <select name="status" id="statusSelect">
+                        <option value="normal">Normal / Planned</option>
+                        <option value="due">Due Soon</option>
+                        <option value="overdue">Overdue</option>
+                        <option value="done">Completed</option>
+                    </select>
+
+                    <!-- Visual preview badge that updates as status changes -->
+                    <div id="statusPreview" class="status-preview status-normal">Normal / Planned</div>
+                </td>
+            </tr>
+
+            <!-- Notes/description text area for additional details -->
+            <tr>
+                <td class="label">Notes / Description:</td>
+                <td class="input">
+                    <textarea name="notes" placeholder="Any extra details, requirements, links..."></textarea>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Submit button to save the Assignment -->
+        <button type="submit" class="save-btn">Save Assignment</button>
+    </form>
+
+    <!-- Clicking Link returns to home page -->
+    <a href="index.html" class="back-link">← Back to Home</a>
+
+</div>
+
+<!-- JavaScript for status color preview functionality -->
+<script>
+    // References to the status dropdown and preview badge elements
+
+    const select = document.getElementById('statusSelect');
+    const preview = document.getElementById('statusPreview');
+
+    // Check both elements exist before adding an event listener
+
+    if (select && preview) {
+        // Listen for changes to the status dropdown
+        select.addEventListener('change', function() {
+            const val = this.value;
+            // Reset classes to base style
+            preview.className = 'status-preview';
+
+            // Appropriate color class applied based on the selected status
+
+            if (val === 'due')     preview.classList.add('status-due');
+            else if (val === 'overdue') preview.classList.add('status-overdue');
+            else if (val === 'done')    preview.classList.add('status-done');
+            else                        preview.classList.add('status-normal');
+
+            // Update preview badge text to match the selected option
+            preview.textContent = this.options[this.selectedIndex].text;
+        });
+    }
+</script>
+
+</body>
+</html>

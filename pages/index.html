@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<!-- This tells the browser this is an HTML5 document -->
+<html lang="en">
+<head>
+    <!-- Character encoding for proper text display -->
+    <meta charset="UTF-8" />
+    <!-- Makes the page responsive on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Essential Assignment Tracker - Home</title>
+
+    <style>
+        /* General styling for the entire page */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Dark header bar at the top of the page */
+        .header {
+            background: #270f2b;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Title styling inside the header */
+        .header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        /* Navigation links in the header */
+        .nav a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Color change when hovering over nav links */
+        .nav a:hover { color: #a5d8ff; }
+
+        /* Main content area - centered with max width */
+        .content {
+            max-width: 1000px;
+            margin: 25px auto;
+            padding: 0 20px;
+        }
+
+        /* Grid layout for statistics cards */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        /* Individual stat card styling */
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        /* Card heading and number styling */
+        .card h3 { margin: 0 0 8px; font-size: 1.1rem; color: #555; }
+        .card .number { font-size: 2.2rem; font-weight: bold; }
+
+        /* Color coding for different assignment statuses */
+        .overdue   { color: #dc3545; }    /* Red for overdue */
+        .due-soon  { color: #fd7e14; }    /* Orange for due soon */
+        .completed { color: #28a745; }    /* Green for completed */
+
+        /* Main section heading */
+        h2 { color: #270f2b; margin: 0 0 15px; }
+
+        /* Search and filter controls layout */
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Search input and dropdown styling */
+        input[type="text"], select {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            flex: 1;
+            min-width: 160px;
+        }
+
+        /* Assignment table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        /* Table header and cell spacing */
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Table header styling */
+        th { background: #e9ecef; color: #5d7b97; }
+
+        /* Status badge styling - shows assignment status */
+        .status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            min-width: 90px;
+            text-align: center;
+        }
+
+        /* Status badge colors */
+        .status-due     { background: #fff3cd; color: #856404; }    /* Yellow */
+        .status-overdue { background: #f8d7da; color: #721c24; }    /* Light red */
+        .status-done    { background: #d4edda; color: #155724; }    /* Light green */
+        .status-normal  { background: #e2e3e5; color: #41464b; }    /* Gray */
+
+        /* Green button to add new assignments */
+        .add-btn {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 25px;
+        }
+
+        /* Button color change on hover */
+        .add-btn:hover { background: #218838; }
+    </style>
+</head>
+<body>
+
+<!-- Top navigation bar -->
+<div class="header">
+    <h1>≡ Essential Assignment Tracker</h1>
+    <!-- Navigation menu links -->
+    <div class="nav">
+        <a href="index.html">Home</a>
+        <a href="add-Assignment.html">Add Assignment</a>
+        <a href="#">About</a>
+    </div>
+</div>
+
+<!-- Main page content -->
+<div class="content">
+
+    <!-- Statistics cards showing quick overview -->
+    <div class="stats">
+        <div class="card">
+            <h3>Due Today</h3>
+            <div class="number due-soon">2</div>
+        </div>
+        <div class="card">
+            <h3>Overdue</h3>
+            <div class="number overdue">1</div>
+        </div>
+        <div class="card">
+            <h3>This Week</h3>
+            <div class="number">5</div>
+        </div>
+        <div class="card">
+            <h3>Completed</h3>
+            <div class="number completed">8</div>
+        </div>
+    </div>
+
+    <h2>Upcoming Assignments</h2>
+
+    <!-- Search and filter options for assignments -->
+    <div class="controls">
+        <input type="text" placeholder="Search Assignments..." />
+        <!-- Filter by module/course -->
+        <select>
+            <option>Module ▼</option>
+            <option>COM101</option>
+            <option>MATH202</option>
+            <option>PHYS301</option>
+        </select>
+        <!-- Filter by assignment status -->
+        <select>
+            <option>Status ▼</option>
+            <option>Due Soon</option>
+            <option>Overdue</option>
+            <option>Done</option>
+        </select>
+    </div>
+
+    <!-- Table showing list of assignments -->
+    <table>
+        <thead>
+        <tr>
+            <th>Assignment</th>
+            <th>Module</th>
+            <th>Due Date</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Sample assignment entries -->
+        <tr>
+            <td>Finish Assignment 1 draft</td>
+            <td>COM101</td>
+            <td>Feb 10, 2026</td>
+            <td><span class="status status-due">Due Soon</span></td>
+        </tr>
+        <tr>
+            <td>Math exercises Ch. 4–6</td>
+            <td>MATH202</td>
+            <td>Feb 5, 2026</td>
+            <td><span class="status status-overdue">Overdue</span></td>
+        </tr>
+        <tr>
+            <td>Prepare group presentation</td>
+            <td>PHYS301</td>
+            <td>Feb 15, 2026</td>
+            <td><span class="status status-normal">Normal</span></td>
+        </tr>
+        <tr>
+            <td>Read lecture notes week 3</td>
+            <td>COM101</td>
+            <td>Feb 8, 2026</td>
+            <td><span class="status status-due">Due Soon</span></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Button to navigate to the add assignment page -->
+    <a href="add-Assignment.html" class="add-btn">+ Add New Assignment</a>
+
+</div>
+
+</body>
+</html>
