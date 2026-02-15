@@ -150,7 +150,7 @@
         .status-due     { background: #fff3cd; color: #856404; }      /* Yellow - coming up soon */
         .status-overdue { background: #f8d7da; color: #721c24; }      /* Red - past due date */
         .status-done    { background: #d4edda; color: #155724; }      /* Green - completed */
-        .status-normal  { background: #e2e3e5; color: #41464b; }      /* Gray - normal/planned */
+        .status-active  { background: #e2e3e5; color: #41464b; }      /* Gray - active */
 
         /* Back link styling */
         .back-link {
@@ -229,14 +229,14 @@
                 <td class="input">
                     <!-- Status selection dropdown -->
                     <select name="status" id="statusSelect">
-                        <option value="normal">Normal / Planned</option>
+                        <option value="Active">Active</option>
                         <option value="due">Due Soon</option>
                         <option value="overdue">Overdue</option>
                         <option value="done">Completed</option>
                     </select>
 
                     <!-- Visual preview badge that updates as status changes -->
-                    <div id="statusPreview" class="status-preview status-normal">Normal / Planned</div>
+                    <div id="statusPreview" class="status-preview status-Active">Active</div>
                 </td>
             </tr>
 
