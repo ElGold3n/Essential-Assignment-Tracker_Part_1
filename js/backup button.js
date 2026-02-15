@@ -1,5 +1,5 @@
 (function(){
-    // beginner-friendly element IDs (must match the HTML IDs)
+
     const backupBtn = document.getElementById('backupBtn');
     const backupMenu = document.getElementById('backupMenu');
     const restoreBtn = document.getElementById('restoreBtn');
