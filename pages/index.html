@@ -134,7 +134,9 @@
         .status-due     { background: #fff3cd; color: #856404; }    /* Yellow */
         .status-overdue { background: #f8d7da; color: #721c24; }    /* Light red */
         .status-done    { background: #d4edda; color: #155724; }    /* Light green */
-        .status-normal  { background: #e2e3e5; color: #41464b; }    /* Gray */
+        .status-normal  { background: #e2e3e5; color: #047cf4; }    /* Gray */
+        .status-active  { background: #e2e3e5; color: #bf08ed; }    /* Dark pink */
+        .status-Completed{ background: #28a745; color: #fdfdfd; }   /* Bright Green */
 
         /* Green button to add new assignments */
         .add-btn {
@@ -156,7 +158,7 @@
 
 <!-- Top navigation bar -->
 <div class="header">
-    <h1>≡ Essential Assignment Tracker</h1>
+    <h1>🎓 Essential Assignment Tracker</h1>
     <!-- Navigation menu links -->
     <div class="nav">
         <a href="index.html">Home</a>
@@ -172,34 +174,38 @@
     <div class="stats">
         <div class="card">
             <h3>Due Today</h3>
-            <div class="number due-soon">2</div>
+            <div class="number due-soon">1</div>
         </div>
         <div class="card">
             <h3>Overdue</h3>
-            <div class="number overdue">1</div>
+            <div class="number overdue">2</div>
         </div>
         <div class="card">
             <h3>This Week</h3>
-            <div class="number">5</div>
+            <div class="number">1</div>
         </div>
         <div class="card">
             <h3>Completed</h3>
-            <div class="number completed">8</div>
+            <div class="number completed">4</div>
         </div>
     </div>
 
     <h2>Upcoming Assignments</h2>
 
     <!-- Search and filter options for assignments -->
+
     <div class="controls">
         <input type="text" placeholder="Search Assignments..." />
+
         <!-- Filter by module/course -->
         <select>
             <option>Module ▼</option>
-            <option>COM101</option>
-            <option>MATH202</option>
-            <option>PHYS301</option>
+            <option>SET08801</option>
+            <option>SET08825</option>
+            <option>SET09801</option>
+            <option>SET09901</option>
         </select>
+
         <!-- Filter by assignment status -->
         <select>
             <option>Status ▼</option>
@@ -207,6 +213,8 @@
             <option>Overdue</option>
             <option>Completed</option>
             <option>Done</option>
+            <option>Active</option>
+
         </select>
     </div>
 
@@ -223,28 +231,28 @@
         <tbody>
         <!-- Sample assignment entries -->
         <tr>
-            <td>Finish Assignment 1 draft</td>
-            <td>COM101</td>
-            <td>Feb 10, 2026</td>
-            <td><span class="status status-due">Due Soon</span></td>
+            <td>Web Technologies Part 1 </td>
+            <td>SET08801</td>
+            <td>Mar 10, 2026</td>
+            <td><span class="status status-due">Due soon</span></td>
         </tr>
         <tr>
-            <td>Math exercises Ch. 4–6</td>
-            <td>MATH202</td>
-            <td>Feb 5, 2026</td>
+            <td>Artificial Intelligence</td>
+            <td>SET08825</td>
+            <td>Feb 05, 2026</td>
             <td><span class="status status-overdue">Overdue</span></td>
         </tr>
         <tr>
-            <td>Prepare group presentation</td>
-            <td>PHYS301</td>
+            <td>Database Systems</td>
+            <td>SET09801</td>
             <td>Feb 15, 2026</td>
-            <td><span class="status status-normal">Normal</span></td>
+            <td><span class="status status-Completed">Completed</span></td>
         </tr>
         <tr>
-            <td>Read lecture notes week 3</td>
-            <td>COM101</td>
+            <td>Devops Global Online</td>
+            <td>SET09901</td>
             <td>Feb 8, 2026</td>
-            <td><span class="status status-due">Due Soon</span></td>
+            <td><span class="status status-overdue">Overdue</span></td>
         </tr>
         </tbody>
     </table>

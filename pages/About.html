@@ -25,10 +25,10 @@
         }
 
         .back-btn {
-            color: white;
+            color: #f3f8f2;
             font-size: 1.3rem;
             font-weight: bold;
-            text-decoration: none;
+            text-decoration: wavy;
             display: flex;
             align-items: center;
             gap: 6px;
@@ -93,7 +93,7 @@
         .footer-note {
             margin-top: 50px;
             color: #6c757d;
-            font-style: italic;
+            font-style: oblique;
             font-size: 1.1rem;
         }
 
@@ -109,7 +109,75 @@
         }
 
         .back-bottom:hover {
-            background: #0056b3;
+            background: #351d8a;
+        }
+
+        /* Settings (gear) button and popover menu */
+        .left-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .settings {
+            position: relative;
+            display: inline-block;
+        }
+
+        .gear-btn {
+            background: transparent;
+            border: none;
+            color: #f3f8f2;
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 6px 10px; /* extra horizontal padding for text */
+            white-space: nowrap; /* prevent line-wrapping when using 'Backup' text */
+            border-radius: 6px;
+        }
+
+        .gear-btn:focus {
+            outline: 2px solid rgba(165,216,255,0.6);
+        }
+
+        .gear-menu {
+            position: absolute;
+            left: 0;
+            top: calc(100% + 8px);
+            background: white;
+            color: #333;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            transform-origin: top left;
+            transform: scale(0);
+            transition: transform 140ms ease;
+            z-index: 50;
+            width: 180px;
+            overflow: hidden;
+        }
+
+        .gear-menu[aria-hidden="false"] {
+            transform: scale(1);
+        }
+
+        .gear-menu button {
+            display: block;
+            width: 100%;
+            padding: 10px 12px;
+            border: none;
+            background: transparent;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .gear-menu button:hover {
+            background: #f4f6f8;
+        }
+
+        .gear-menu .hint {
+            font-size: 0.8rem;
+            color: #666;
+            padding: 8px 12px;
         }
     </style>
 </head>
@@ -117,7 +185,19 @@
 
 <!-- Header section with navigation -->
 <div class="header">
-    <a href="index.html" class="back-btn">← Back</a>
+    <div class="left-group">
+        <a href="index.html" class="back-btn">← Back</a>
+        <div class="settings">
+            <button id="backupBtn" class="gear-btn" aria-haspopup="true" aria-expanded="false" title="Backup & Restore" aria-label="Backup and restore data">Backup</button>
+            <div id="backupMenu" class="gear-menu" role="menu" aria-hidden="true">
+                <div class="hint">Backup / Restore</div>
+                <button id="restoreBtn" type="button" role="menuitem">Restore (Import)…</button>
+                <button id="exportBtn" type="button" role="menuitem">Backup (Export)</button>
+            </div>
+        </div>
+        <!-- hidden file input for import -->
+        <input id="importFileInput" type="file" accept="application/json,.json" style="display:none" />
+    </div>
     <h1>≡ Essential Assignment Tracker</h1>
     <div class="nav">
         <a href="index.html">Home</a>
@@ -136,22 +216,24 @@
     <div class="section">
         <p>
             This is a simple, personal Essential Assignment Tracker
-            I built to help me stay organised during my university stint.
+            I built to help me stay organized during my university stint.
         </p>
 
         <p class="highlight">What it does:</p>
         <ul>
             <li>Shows upcoming Assignments and deadlines on the Home page</li>
             <li>Lets you quickly add new assignments or study sessions</li>
-            <li>Utilizes coloured badges to highlight what’s urgent (Due Soon / Overdue)</li>
+            <li>Uses colored badges to highlight what’s urgent (Due Soon / Overdue)</li>
             <li>Keeps everything lightweight — no login, no ads, just your clear-cut Assignments.</li>
         </ul>
 
         <p class="highlight">Main goal:</p>
         <p>
             Help you to see at a glance what needs attention today or this week, so you don’t miss deadlines and can make better plans.
-            <li> Allows you to back up and export your data to a JSON file for offline use or continuing on another device if your computer breaks.<li>
         </p>
+        <ul>
+            <li>Allows you to back up and export your data to a JSON file for offline use or continuing on another device if your computer breaks.</li>
+        </ul>
 
         <p class="highlight">Built with:</p>
         <ul>
@@ -181,4 +263,5 @@
 </div>
 
 </body>
+<script src="../js/gear-settings.js"></script>
 </html>
