@@ -122,6 +122,7 @@
         .settings {
             position: relative;
             display: inline-block;
+            z-index: 60; /* keep the gear/menu above nearby content */
         }
 
         .gear-btn {
@@ -149,7 +150,9 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.12);
             transform-origin: top left;
             transform: scale(0);
-            transition: transform 140ms ease;
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 140ms ease, opacity 120ms ease;
             z-index: 50;
             width: 180px;
             overflow: hidden;
@@ -157,6 +160,17 @@
 
         .gear-menu[aria-hidden="false"] {
             transform: scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* CSS fallback: if the settings container receives focus (keyboard or click),
+           show the menu even without JavaScript. This makes the menu usable
+           if scripts fail or are blocked. */
+        .settings:focus-within .gear-menu {
+            transform: scale(1);
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .gear-menu button {
@@ -188,7 +202,7 @@
     <div class="left-group">
         <a href="index.html" class="back-btn">← Back</a>
         <div class="settings">
-            <button id="backupBtn" class="gear-btn" aria-haspopup="true" aria-expanded="false" title="Backup & Restore" aria-label="Backup and restore data">Backup</button>
+            <button id="backupBtn" class="gear-btn" aria-haspopup="true" aria-expanded="false" title="Backup & Restore" aria-label="Backup and restore data" onclick="(function(e,b,m){e.stopPropagation(); if(!b||!m) return; const isOpen = m.getAttribute('aria-hidden')==='false'; m.setAttribute('aria-hidden', isOpen ? 'true' : 'false'); b.setAttribute('aria-expanded', isOpen ? 'false' : 'true');})(event, document.getElementById('backupBtn'), document.getElementById('backupMenu'))">⚙️</button>
             <div id="backupMenu" class="gear-menu" role="menu" aria-hidden="true">
                 <div class="hint">Backup / Restore</div>
                 <button id="restoreBtn" type="button" role="menuitem">Restore (Import)…</button>
@@ -197,6 +211,25 @@
         </div>
         <!-- hidden file input for import -->
         <input id="importFileInput" type="file" accept="application/json,.json" style="display:none" />
+        <script>
+            // Immediate, safe handler: binds the toggle so the menu opens even if other scripts fail.
+            (function(){
+                try{
+                    var b = document.getElementById('backupBtn');
+                    var m = document.getElementById('backupMenu');
+                    if(!b || !m) return;
+                    if(b.dataset && b.dataset.backupBound) return; // already bound
+                    b.dataset.backupBound = '1';
+                    b.addEventListener('click', function(e){
+                        e.stopPropagation();
+                        var open = m.getAttribute('aria-hidden') === 'false';
+                        m.setAttribute('aria-hidden', open ? 'true' : 'false');
+                        b.setAttribute('aria-expanded', open ? 'false' : 'true');
+                    });
+                    document.addEventListener('click', function(e){ if(!m.contains(e.target) && e.target !== b) m.setAttribute('aria-hidden','true'); });
+                }catch(err){ console && console.error && console.error('backup immediate bind failed', err); }
+            })();
+        </script>
     </div>
     <h1>≡ Essential Assignment Tracker</h1>
     <div class="nav">
@@ -210,8 +243,8 @@
     <h1>About This Essential Assignment Tracker
 </h1>
 
+    <!-- decorative icon above the About section -->
     <div class="icon">🎓</div>
-
 
     <div class="section">
         <p>
@@ -263,5 +296,27 @@
 </div>
 
 </body>
-<script src="../js/backup%20button.js"></script>
+<script src="../js/backup-button.js"></script>
+<script>
+    // Fallback: if the external script failed to initialize for any reason,
+    // attach a simple toggle handler so the menu still works.
+    (function(){
+        setTimeout(function(){
+            if(window.backupButtonInitialized) return;
+            try{
+                var b = document.getElementById('backupBtn');
+                var m = document.getElementById('backupMenu');
+                if(!b || !m) return;
+                b.addEventListener('click', function(e){
+                    e.stopPropagation();
+                    var open = m.getAttribute('aria-hidden') === 'false';
+                    m.setAttribute('aria-hidden', open ? 'true' : 'false');
+                    b.setAttribute('aria-expanded', open ? 'false' : 'true');
+                });
+                document.addEventListener('click', function(e){ if(!m.contains(e.target) && e.target !== b) m.setAttribute('aria-hidden','true'); });
+                console && console.log && console.log('[backup-button] fallback attached');
+            }catch(e){ console && console.error && console.error('[backup-button] fallback failed', e); }
+        }, 300);
+    })();
+</script>
 </html>
