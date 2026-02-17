@@ -164,9 +164,6 @@
         });
     }
 
-    // small console/log marker — helpful when debugging
-    console && console.log && console.log('[backup-button] initialized');
-    // mark that initialization ran so fallback code can detect it
-    try{ window.backupButtonInitialized = true; }catch(e){}
+
 
 })();
