@@ -1,10 +1,4 @@
 <!DOCTYPE html>
-<!-- About page for the Essential Assignment Tracker.
-     Beginner notes:
-     - This file is an ordinary HTML page. Open it in a browser to view.
-     - Edit the visible text inside the <body> area to change what users see.
-     - The backup button in the header is wired to a JavaScript file (see bottom) — keep the element IDs the same if you edit them.
--->
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -12,8 +6,6 @@
     <title>Essential Assignment Tracker - About</title>
 
     <style>
-        /* Page styles: these control how the page looks. */
-        /* Body styles: change font, background, and base colors here. */
         body {
             font-family: Arial, Helvetica, sans-serif;
             background: #f8f9fa;
@@ -22,7 +14,6 @@
             line-height: 1.6;
         }
 
-        /* Header area (top bar) */
         .header {
             background: #270f2b;
             color: white;
@@ -33,7 +24,6 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
 
-        /* Back button style: visible on the left of the header. */
         .back-btn {
             color: #f3f8f2;
             font-size: 1.3rem;
@@ -48,7 +38,6 @@
             color: #a5d8ff;
         }
 
-        /* Navigation links: change these URLs to add/remove pages. */
         .nav a {
             color: white;
             margin-left: 20px;
@@ -60,7 +49,6 @@
             color: #a5d8ff;
         }
 
-        /* Main content container */
         .content {
             max-width: 800px;
             margin: 40px auto;
@@ -71,20 +59,17 @@
             text-align: center;
         }
 
-        /* Heading styles */
         h1 {
             color: #270f2b;
             margin: 0 0 25px;
             font-size: 2.1rem;
         }
 
-        /* Simple icon / emoji block */
         .icon {
             font-size: 4rem;
             margin-bottom: 20px;
         }
 
-        /* Section wrapper - this keeps the body text narrow and readable */
         .section {
             max-width: 600px;
             margin: 0 auto 35px;
@@ -127,9 +112,7 @@
             background: #351d8a;
         }
 
-        /* Settings (backup) button and popover menu */
-        /* Beginner tip: The buttons below are connected to JavaScript by their IDs.
-           If you rename an ID here, update the same ID inside the JS file in /js/. */
+        /* Settings (gear) button and popover menu */
         .left-group {
             display: flex;
             align-items: center;
@@ -139,10 +122,9 @@
         .settings {
             position: relative;
             display: inline-block;
+            z-index: 60; /* keep the gear/menu above nearby content */
         }
 
-        /* .gear-btn is the visible button. You can change its text or icon but keep the id="backupBtn".
-           The CSS below keeps the button compact and prevents the words from wrapping. */
         .gear-btn {
             background: transparent;
             border: none;
@@ -158,7 +140,6 @@
             outline: 2px solid rgba(165,216,255,0.6);
         }
 
-        /* The popover menu is hidden by default (scaled down) and shown by changing aria-hidden to false. */
         .gear-menu {
             position: absolute;
             left: 0;
@@ -169,15 +150,27 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.12);
             transform-origin: top left;
             transform: scale(0);
-            transition: transform 140ms ease;
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 140ms ease, opacity 120ms ease;
             z-index: 50;
             width: 180px;
             overflow: hidden;
         }
 
-        /* The JavaScript toggles aria-hidden on .gear-menu; this rule expands the menu when aria-hidden="false". */
         .gear-menu[aria-hidden="false"] {
             transform: scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* CSS fallback: if the settings container receives focus (keyboard or click),
+           show the menu even without JavaScript. This makes the menu usable
+           if scripts fail or are blocked. */
+        .settings:focus-within .gear-menu {
+            transform: scale(1);
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .gear-menu button {
@@ -207,25 +200,38 @@
 <!-- Header section with navigation -->
 <div class="header">
     <div class="left-group">
-        <!-- Back link: clicking this returns to the home page (index.html). Edit the link if you move pages. -->
         <a href="index.html" class="back-btn">← Back</a>
         <div class="settings">
-            <!-- Gear button: visible gear icon; IDs and ARIA attributes are unchanged so JS still finds it. -->
-            <button id="backupBtn" class="gear-btn" aria-haspopup="true" aria-expanded="false" title="Backup & Restore" aria-label="Backup and restore data">⚙️</button>
-            <!-- Menu: contains restore/import and backup/export actions.
-                 The JS toggles aria-hidden="false" to show the menu. -->
+            <button id="backupBtn" class="gear-btn" aria-haspopup="true" aria-expanded="false" title="Backup & Restore" aria-label="Backup and restore data" onclick="(function(e,b,m){e.stopPropagation(); if(!b||!m) return; const isOpen = m.getAttribute('aria-hidden')==='false'; m.setAttribute('aria-hidden', isOpen ? 'true' : 'false'); b.setAttribute('aria-expanded', isOpen ? 'false' : 'true');})(event, document.getElementById('backupBtn'), document.getElementById('backupMenu'))">⚙️</button>
             <div id="backupMenu" class="gear-menu" role="menu" aria-hidden="true">
                 <div class="hint">Backup / Restore</div>
-                <!-- restoreBtn triggers the file input below; exportBtn triggers a download. -->
                 <button id="restoreBtn" type="button" role="menuitem">Restore (Import)…</button>
                 <button id="exportBtn" type="button" role="menuitem">Backup (Export)</button>
             </div>
         </div>
-        <!-- hidden file input for import. The JS clicks this element when you choose Restore. -->
+        <!-- hidden file input for import -->
         <input id="importFileInput" type="file" accept="application/json,.json" style="display:none" />
+        <script>
+            // Immediate, safe handler: binds the toggle so the menu opens even if other scripts fail.
+            (function(){
+                try{
+                    var b = document.getElementById('backupBtn');
+                    var m = document.getElementById('backupMenu');
+                    if(!b || !m) return;
+                    if(b.dataset && b.dataset.backupBound) return; // already bound
+                    b.dataset.backupBound = '1';
+                    b.addEventListener('click', function(e){
+                        e.stopPropagation();
+                        var open = m.getAttribute('aria-hidden') === 'false';
+                        m.setAttribute('aria-hidden', open ? 'true' : 'false');
+                        b.setAttribute('aria-expanded', open ? 'false' : 'true');
+                    });
+                    document.addEventListener('click', function(e){ if(!m.contains(e.target) && e.target !== b) m.setAttribute('aria-hidden','true'); });
+                }catch(err){ console && console.error && console.error('backup immediate bind failed', err); }
+            })();
+        </script>
     </div>
     <h1>≡ Essential Assignment Tracker</h1>
-    <!-- Main navigation links. To add a new page, add an <a> element here. -->
     <div class="nav">
         <a href="index.html">Home</a>
         <a href="add-Assignment.html">Add Assignment</a>
@@ -234,17 +240,13 @@
 </div>
 
 <div class="content">
-    <!-- Page title — change this if you rename the page. -->
     <h1>About This Essential Assignment Tracker
-</h1>
+    </h1>
 
-    <!-- Small decorative icon — you can replace the emoji with an SVG or image. -->
-
+    <!-- decorative icon above the About section -->
     <div class="icon">🎓</div>
 
-
     <div class="section">
-        <!-- Body text: this is where you write what the app does. Edit the paragraphs below. -->
         <p>
             This is a simple, personal Essential Assignment Tracker
             I built to help me stay organized during my university stint.
@@ -294,9 +296,27 @@
 </div>
 
 </body>
-<!-- The script below loads the JavaScript that handles the Backup / Restore behaviour.
-     If you move or rename the JS file, update this path. The JS expects the IDs used above:
-     backupBtn, backupMenu, restoreBtn, exportBtn, importFileInput
--->
-<script src="../js/backup%20button.js"></script>
+<script src="../js/backup-button.js"></script>
+<script>
+    // Fallback: if the external script failed to initialize for any reason,
+    // attach a simple toggle handler so the menu still works.
+    (function(){
+        setTimeout(function(){
+            if(window.backupButtonInitialized) return;
+            try{
+                var b = document.getElementById('backupBtn');
+                var m = document.getElementById('backupMenu');
+                if(!b || !m) return;
+                b.addEventListener('click', function(e){
+                    e.stopPropagation();
+                    var open = m.getAttribute('aria-hidden') === 'false';
+                    m.setAttribute('aria-hidden', open ? 'true' : 'false');
+                    b.setAttribute('aria-expanded', open ? 'false' : 'true');
+                });
+                document.addEventListener('click', function(e){ if(!m.contains(e.target) && e.target !== b) m.setAttribute('aria-hidden','true'); });
+                console && console.log && console.log('[backup-button] fallback attached');
+            }catch(e){ console && console.error && console.error('[backup-button] fallback failed', e); }
+        }, 300);
+    })();
+</script>
 </html>
