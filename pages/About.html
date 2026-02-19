@@ -2,13 +2,9 @@
 <!--
 
   - This page is a plain HTML file. You can open it directly in your browser to see the page.
-
   - Edit the visible text inside the <body> area (below) to change what users see.
-
-  - CSS can be found inside the <style> block — change colors, spacing, and fonts there.
-
-  - The small gear button (⚙️) in the header is programmed to a JavaScript file at ../js/backup-button.js
-
+  - CSS is inside the <style> block — change colors, spacing, and fonts there.
+  - The small gear button (⚙️) in the header is wired to a JavaScript file at ../js/backup-button.js
     which provides Export/Import (backup/restore). If you rename the button's id, update the JS too.
 -->
 <html lang="en">
@@ -18,22 +14,19 @@
     <title>Essential Assignment Tracker - About</title>
 
     <style>
-
-        /* ===== Page styles =====
-
-           These styles control makes the the page look of Colourful and unique (colors, spacing, fonts).
-
+        /* ===== Basic page styles =====
+           These styles control the look of the page (colors, spacing, fonts).
+           Beginner tip: change the color values (like #270f2b) and re-open the page to see results.
         */
         body {
-            font-family: Arial, sans-serif;
-            background: #fdfdfd;
+            font-family: Arial, Helvetica, sans-serif; /* change this to try other system fonts */
+            background: #f8f9fa;
             margin: 0;
             color: #333;
             line-height: 1.6;
         }
 
         /* Header / top bar styles */
-
         .header {
             background: #270f2b; /* header background color */
             color: white; /* text color in header */
@@ -41,7 +34,7 @@
             display: flex; /* layout: items in a row */
             justify-content: space-between; /* left and right groups */
             align-items: center;
-            box-shadow: 0 3px 7px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
 
         /* The back link (left of the header)*/
@@ -83,14 +76,14 @@
 
         /* Page title styles */
         h1 {
-            color: #270f2b;
+            color: #bc9004;
             margin: 0 0 25px;
             font-size: 2.1rem;
         }
 
         /* Decorative grad hat icon above the About section (emoji) */
         .icon {
-            font-size: 8rem; /* increase or decrease the emoji size here */
+            font-size: 4rem; /* increase or decrease the emoji size here */
             margin-bottom: 20px;
         }
 
