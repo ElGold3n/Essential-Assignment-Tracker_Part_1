@@ -8,6 +8,7 @@
 
     <style>
         /* General body styling - light background with standard font */
+
         body {
             font-family: Arial, sans-serif;
             background: #f8f9fa;
@@ -17,6 +18,7 @@
         }
 
         /* Header bar with dark background spanning full width */
+
         .header {
             background: #270f2b;
             color: white;
@@ -27,12 +29,14 @@
         }
 
         /* Header title styling */
+
         .header h1 {
             margin: 0;
             font-size: 1.5rem;
         }
 
         /* Back button styling in header */
+
         .back-btn {
             color: white;
             font-size: 1.3rem;
@@ -44,11 +48,13 @@
         }
 
         /* Back button hover effect */
+
         .back-btn:hover {
             color: #a5d8ff;
         }
 
         /* Navigation links - white text with spacing */
+
         .nav a {
             color: white;
             margin-left: 20px;
@@ -57,38 +63,43 @@
         }
 
         /* Navigation link hover effect - light blue color */
+
         .nav a:hover { color: #a5d8ff; }
 
         /* Main content container - centered with white background and shadow */
+
         .content {
             max-width: 800px;
             margin: 30px auto;
             padding: 20px;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         }
 
         /* Page heading styling */
+
         h2 {
-            color: #2c3e50;
+            color: #2c5a21;
             margin-bottom: 25px;
             text-align: center;
         }
 
-        /* Form table layout with spacing between rows */
+        /* Form table layout with spaced rows */
+
         table.form-table {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0 12px;
         }
 
-        /* Label column styling - fixed width with bold text */
+        /* Label column styling - bold text with fixed width   */
+
         table.form-table td.label {
             width: 140px;
             font-weight: bold;
             vertical-align: middle;
-            color: #495057;
+            color: #2c5a21;
         }
 
         /* Input column with left padding for spacing */
@@ -97,6 +108,7 @@
         }
 
         /* Styling for all form input elements - consistent borders and padding */
+
         input[type="text"],
         input[type="date"],
         input[type="number"],
@@ -104,19 +116,21 @@
         select {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ced4da;
-            border-radius: 6px;
+            border: 1px solid #0578ea;
+            border-radius: 3px;
             font-size: 1rem;
             box-sizing: border-box;
         }
 
         /* Textarea specific styling - larger height with controlled resize */
+
         textarea {
             height: 90px;
             resize: vertical;
         }
 
         /* Save button styling - green background with centered positioning */
+
         button.save-btn {
             background: #28a745;
             color: white;
@@ -130,11 +144,13 @@
         }
 
         /* Save button hover effect - darker green */
+
         button.save-btn:hover {
             background: #218838;
         }
 
         /* Status preview badge styling - shows selected status in real-time */
+
         .status-preview {
             padding: 6px 12px;
             border-radius: 16px;
@@ -147,12 +163,14 @@
         }
 
         /* Status color themes - different colors for each status type */
+
         .status-due     { background: #fff3cd; color: #856404; }      /* Yellow - coming up soon */
         .status-overdue { background: #f8d7da; color: #721c24; }      /* Red - past due date */
         .status-done    { background: #d4edda; color: #155724; }      /* Green - completed */
         .status-active  { background: #e2e3e5; color: #41464b; }      /* Gray - active */
 
         /* Back link styling */
+
         .back-link {
             display: inline-block;
             margin-top: 20px;
@@ -161,6 +179,7 @@
         }
 
         /* Back link hover effect - underline on hover */
+
         .back-link:hover {
             text-decoration: underline;
         }
@@ -169,6 +188,7 @@
 <body>
 
 <!-- Header section with navigation -->
+
 <div class="header">
     <a href="index.html" class="back-btn">← Back</a>
     <h1>🎓 Essential Assignment Tracker</h1>
@@ -180,13 +200,16 @@
 </div>
 
 <!-- Main content area -->
+
 <div class="content">
 
     <h2>Add New Assignment</h2>
 
     <!-- Form for adding a new Assignment -->
+
     <form action="#" method="post">
         <table class="form-table">
+
             <!-- Assignment name input field -->
             <tr>
                 <td class="label">Assignment Name:</td>
@@ -196,6 +219,7 @@
             </tr>
 
             <!-- Module/Course identification field -->
+
             <tr>
                 <td class="label">Module / Course:</td>
                 <td class="input">
@@ -204,6 +228,7 @@
             </tr>
 
             <!-- Due date picker -->
+
             <tr>
                 <td class="label">Due Date:</td>
                 <td class="input">
@@ -212,6 +237,7 @@
             </tr>
 
             <!-- Priority level dropdown -->
+
             <tr>
                 <td class="label">Priority:</td>
                 <td class="input">
@@ -224,10 +250,13 @@
             </tr>
 
             <!-- Status dropdown with live preview -->
+
             <tr>
                 <td class="label">Status:</td>
                 <td class="input">
+
                     <!-- Status selection dropdown -->
+
                     <select name="status" id="statusSelect">
                         <option value="Active">Active</option>
                         <option value="due">Due Soon</option>
@@ -236,11 +265,13 @@
                     </select>
 
                     <!-- Visual preview badge that updates as status changes -->
+
                     <div id="statusPreview" class="status-preview status-Active">Active</div>
                 </td>
             </tr>
 
             <!-- Notes/description text area for additional details -->
+
             <tr>
                 <td class="label">Notes / Description:</td>
                 <td class="input">
@@ -250,6 +281,7 @@
         </table>
 
         <!-- Submit button to save the Assignment -->
+
         <button type="submit" class="save-btn">Save Assignment</button>
     </form>
 
