@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<!-- This tells the browser this is an HTML5 document -->
 <html lang="en">
 <head>
 
     <!-- Character encoding for proper text display -->
     <meta charset="UTF-8" />
 
-    <!-- Makes the page responsive on mobile devices -->
+    <!-- Makes the page responsive when open on mobile devices -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     <title>Essential Assignment Tracker - Home</title>
 
     <style>
         /* General styling for the entire page */
+
         body {
             font-family: Arial, sans-serif;
             background: #f8f9fa;
@@ -22,6 +23,7 @@
         }
 
         /* Dark header bar at the top of the page */
+
         .header {
             background: #270f2b;
             color: white;
@@ -32,12 +34,14 @@
         }
 
         /* Title styling inside the header */
+
         .header h1 {
             margin: 0;
             font-size: 1.5rem;
         }
 
         /* Navigation links in the header */
+
         .nav a {
             color: white;
             margin-left: 20px;
@@ -46,16 +50,19 @@
         }
 
         /* Color change when hovering over nav links */
+
         .nav a:hover { color: #a5d8ff; }
 
-        /* Main content area - centered with max width */
+        /* Main content area - max width centered */
+
         .content {
             max-width: 1000px;
             margin: 25px auto;
             padding: 0 20px;
         }
 
-        /* Grid layout for statistics cards */
+        /* Grid layout for counter cards */
+
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -63,7 +70,8 @@
             margin-bottom: 30px;
         }
 
-        /* Individual stat card styling */
+        /* Individual counter card styling */
+
         .card {
             background: white;
             padding: 20px;
@@ -73,10 +81,12 @@
         }
 
         /* Card heading and number styling */
+
         .card h3 { margin: 0 0 8px; font-size: 1.1rem; color: #555; }
         .card .number { font-size: 2.2rem; font-weight: bold; }
 
-        /* Color coding for different assignment statuses */
+        /* Color coding for different Assignment statuses */
+
         .overdue   { color: #dc3545; }    /* Red for overdue */
         .due-soon  { color: #fd7e14; }    /* Orange for due soon */
         .completed { color: #28a745; }    /* Green for completed */
@@ -84,9 +94,11 @@
         .normal    { color: #007bff; }     /* Light blue */
 
         /* Main section heading */
+
         h2 { color: #270f2b; margin: 0 0 15px; }
 
         /* Search and filter controls layout */
+
         .controls {
             display: flex;
             gap: 12px;
@@ -95,16 +107,18 @@
         }
 
         /* Search input and dropdown styling */
+
         input[type="text"], select {
             padding: 10px;
             font-size: 1rem;
-            border: 1px solid #ced4da;
+            border: 1px solid #0770da;
             border-radius: 6px;
             flex: 1;
             min-width: 160px;
         }
 
         /* Assignment table styling */
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -115,6 +129,7 @@
         }
 
         /* Table header and cell spacing */
+
         th, td {
             padding: 12px 15px;
             text-align: left;
@@ -122,9 +137,11 @@
         }
 
         /* Table header styling */
+
         th { background: #e9ecef; color: #5d7b97; }
 
-        /* Status badge styling - shows assignment status */
+        /* Status badge styling - shows Assignment status */
+
         .status {
             padding: 6px 12px;
             border-radius: 20px;
@@ -136,6 +153,7 @@
         }
 
         /* Status badge colors */
+
         .status-due     { background: #e4b51f; color: #47074e; }    /* Yellow */
         .status-overdue { background: #f8d7da; color: #721c24; }    /* Light red */
         .status-done    { background: #d4edda; color: #155724; }    /* Light green */
@@ -144,6 +162,7 @@
         .status-Completed{ background: #28a745; color: #fdfdfd; }   /* Bright Green */
 
         /* Green button to add new assignments */
+
         .add-btn {
             display: inline-block;
             background: #28a745;
@@ -156,7 +175,9 @@
         }
 
         /* Button color change on hover */
+
         .add-btn:hover { background: #17cdbd; }
+
     </style>
     <!-- CSS Stylesheet ends for the home page -->
 </head>
@@ -164,10 +185,12 @@
 
 
 <!-- Top navigation bar -->
+
 <div class="header">
     <h1>🎓 Essential Assignment Tracker</h1>
 
     <!-- Navigation menu links -->
+
     <div class="nav">
         <a href="index.html">Home</a>
         <a href="add-Assignment.html">Add Assignment</a>
@@ -176,9 +199,11 @@
 </div>
 
 <!-- Main page content -->
+
 <div class="content">
 
-    <!-- Statistics cards showing a quick overview -->
+    <!-- Counter cards showing a quick overview -->
+
     <div class="stats">
         <div class="card">
             <h3>Due Today</h3>
@@ -200,12 +225,13 @@
 
     <h2>Upcoming Assignments</h2>
 
-    <!-- Search and filter options for assignments -->
+    <!-- Search and filter options for Assignments -->
 
     <div class="controls">
         <input type="text" placeholder="Search Assignments..." />
 
-        <!-- Filter by module/course -->
+        <!-- Module/Course Filter -->
+
         <select>
             <option>Module ▼</option>
             <option>SET08801</option>
@@ -214,7 +240,8 @@
             <option>SET09901</option>
         </select>
 
-        <!-- Filter by assignment status -->
+        <!-- Assignment Status Filter -->
+
         <select>
             <option>Status ▼</option>
             <option>Due Soon</option>
@@ -226,7 +253,8 @@
         </select>
     </div>
 
-    <!-- Table showing the list of assignments -->
+    <!--  list of Assignment table  -->
+
     <table>
         <thead>
         <tr>
@@ -237,7 +265,8 @@
         </tr>
         </thead>
         <tbody>
-        <!-- Sample assignment entries -->
+
+        <!-- Sample Assignment entries -->
         <tr>
             <td>Web Technologies Part 1 </td>
             <td>SET08801</td>
@@ -265,7 +294,8 @@
         </tbody>
     </table>
 
-    <!-- Button to navigate to the add assignment page -->
+    <!-- Button to navigate to the add Assignment page -->
+
     <a href="add-Assignment.html" class="add-btn">+ Add New Assignment</a>
 
 </div>
