@@ -18,12 +18,7 @@
     <title>Essential Assignment Tracker - About</title>
 
     <style>
-
-        /* ===== Page styles =====
-
-           These styles control makes the the page look of Colourful and unique (colors, spacing, fonts).
-
-        */
+        /* ===== Page styles ===== */
         body {
             font-family: Arial, sans-serif;
             background: #fdfdfd;
@@ -32,33 +27,27 @@
             line-height: 1.6;
         }
 
-        /* Header / top bar styles */
-
         .header {
-            background: #270f2b; /* header background color */
-            color: white; /* text color in header */
-            padding: 12px 20px; /* spacing inside the header */
-            display: flex; /* layout: items in a row */
-            justify-content: space-between; /* left and right groups */
+            background: #270f2b;
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
             box-shadow: 0 3px 7px rgba(0,0,0,0.15);
         }
-
-        /* The back link (left of the header)*/
 
         .back-btn {
             color: #f3f8f2;
             font-size: 1.3rem;
             font-weight: bold;
-            text-decoration: wavy; /* decorative — you can change to suit your taste*/
+            text-decoration: wavy;
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
         .back-btn:hover { color: #a5d8ff; }
-
-        /* Navigation links on the right of the header */
 
         .nav a {
             color: white;
@@ -68,8 +57,6 @@
         }
 
         .nav a:hover { color: #a5d8ff; }
-
-        /* Main content card in the middle of the page */
 
         .content {
             max-width: 800px;
@@ -81,96 +68,185 @@
             text-align: center;
         }
 
-        /* Page title styles */
         h1 {
             color: #270f2b;
             margin: 0 0 25px;
             font-size: 2.1rem;
         }
 
-        /* Decorative grad hat icon above the About section (emoji) */
         .icon {
-            font-size: 8rem; /* increase or decrease the emoji size here */
+            font-size: 8rem;
             margin-bottom: 20px;
         }
 
-        /* The left column inside header that holds the back button function + settings */
-
         .left-group { display: flex; align-items: center; gap: 8px; }
 
-        /* Settings (gear) button and menu styles
-
-           - #backupBtn  : the visible button
-           - #backupMenu : the menu container (aria-hidden triggered by JS)
-           - #restoreBtn, #exportBtn : buttons inside the menu
-           - #importFileInput : hidden <input type="file"> used to import JSON
-        */
         .settings { position: relative; display: inline-block; z-index: 60; }
         .gear-btn {
-            background: transparent; border: none; color: #f3f8f2;
-            font-size: 1.1rem; cursor: pointer; padding: 6px 10px; white-space: nowrap; border-radius: 6px;
+            background: transparent;
+            border: none;
+            color: #f3f8f2;
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 6px 10px;
+            white-space: nowrap;
+            border-radius: 6px;
         }
         .gear-menu {
-            position: absolute; left: 0; top: calc(100% + 8px);
-            background: white; color: #333; border-radius: 8px;
+            position: absolute;
+            left: 0;
+            top: calc(100% + 8px);
+            background: white;
+            color: #333;
+            border-radius: 8px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-            transform-origin: top left; transform: scale(0);
-            opacity: 0; pointer-events: none;
+            transform-origin: top left;
+            transform: scale(0);
+            opacity: 0;
+            pointer-events: none;
             transition: transform 140ms ease, opacity 120ms ease;
-            z-index: 50; width: 180px; overflow: hidden;
+            z-index: 50;
+            width: 180px;
+            overflow: hidden;
         }
-        .gear-menu[aria-hidden="false"] { transform: scale(1); opacity: 1; pointer-events: auto; }
-
-        .settings:focus-within .gear-menu { transform: scale(1); opacity: 1; pointer-events: auto; }
-
-        .gear-menu button { display: block; width: 100%; padding: 10px 12px; border: none; background: transparent; text-align: left; cursor: pointer; font-size: 0.95rem; }
+        .gear-menu[aria-hidden="false"] {
+            transform: scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .settings:focus-within .gear-menu {
+            transform: scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .gear-menu button {
+            display: block;
+            width: 100%;
+            padding: 10px 12px;
+            border: none;
+            background: transparent;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
         .gear-menu button:hover { background: #f4f6f8; }
-        .gear-menu .hint { font-size: 0.8rem; color: #666; padding: 8px 12px; }
-
-        /* Content area styles — where you widths, spacing and typography can be altered to your liking.*/
+        .gear-menu .hint {
+            font-size: 0.8rem;
+            color: #666;
+            padding: 8px 12px;
+        }
 
         .section { max-width: 600px; margin: 0 auto 35px; text-align: left; }
         ul { padding-left: 20px; margin: 15px 0; }
         ul li { margin: 10px 0; }
         .highlight { font-weight: bold; color: #2c3e50; }
 
-        /* Footer note and bottom back button */
-
-        .footer-note { margin-top: 50px; color: #6c757d; font-style: oblique; font-size: 1.1rem; }
-        .back-bottom { display: inline-block; margin-top: 40px; padding: 10px 24px; background: #007bff; color: white; border-radius: 8px; text-decoration: none; font-weight: bold; }
+        .footer-note {
+            margin-top: 50px;
+            color: #6c757d;
+            font-style: oblique;
+            font-size: 1.1rem;
+        }
+        .back-bottom {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 10px 24px;
+            background: #007bff;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
         .back-bottom:hover { background: #351d8a; }
+
+        /*-----comment out til part 2 is done --------
+       /* ─────────────────────────────────────────────── */
+        /* Automatic dark mode – follows OS preference */
+
+        /*
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #121212;
+                color: #e0e0e0;
+            }
+
+            .header {
+                background: #1a1a1a;
+                box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+            }
+
+            .back-btn,
+            .gear-btn,
+            .nav a {
+                color: #e0e0ff;
+            }
+
+            .back-btn:hover,
+            .nav a:hover {
+                color: #a5d8ff;
+            }
+
+            .content {
+                background: #1e1e1e;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+                color: #e0e0e0;
+            }
+
+            h1 {
+                color: #a0d0ff;
+            }
+
+            .icon {
+                filter: brightness(1.2); /* makes emoji pop a bit more in dark */
+            }
+             /*
+            .gear-menu {
+                background: #222233;
+                color: #e0e0e0;
+                box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+            }
+
+            .gear-menu button {
+                color: #e0e0e0;
+            }
+
+            .gear-menu button:hover {
+                background: #333344;
+            }
+
+            .gear-menu .hint {
+                color: #aaaacc;
+            }
+
+            .highlight {
+                color: #aaccff;
+            }
+
+            .footer-note {
+                color: #aaaacc;
+            }
+
+            .back-bottom {
+                background: #0066cc;
+            }
+
+            .back-bottom:hover {
+                background: #004080;
+            }
+        }
+        */
+
     </style>
 </head>
 <body>
 
-
 <!-- Header section with navigation -->
-
 <div class="header">
     <div class="left-group">
-
-        <!-- Back button: returns to the home page by clicking this button (index.html). -->
-
         <a href="index.html" class="back-btn">← Back</a>
 
-        <!-- Settings: the small gear button and its popover menu.
-
-             The JavaScript file is at./js/backup-button.js and expects the exact IDs used here. -->
         <div class="settings">
             <button id="backupBtn" class="gear-btn" aria-haspopup="true" aria-expanded="false" title="Backup & Restore" aria-label="Backup and restore data">⚙️</button>
-            <!--
-               The menu below contains two actions:
-
-               - Restore (Import)…: opens a file picker and loads keys into localStorage.
-
-                 Activated when you want to restore data from a previously exported file.
-
-               - Backup (Export): Generates and downloads a .json file with your localStorage data.
-
-               The above are possible as a result of localStorage being browser-specific. Exported files let your move data on any device or platform you choose.
-
-               between browsers or machines by importing the JSON file. -->
-
 
             <div id="backupMenu" class="gear-menu" role="menu" aria-hidden="true">
                 <div class="hint">Backup / Restore</div>
@@ -179,16 +255,10 @@
             </div>
         </div>
 
-        <!-- Hidden file input for import option - JS function will trigger this when you select Restore -->
-
         <input id="importFileInput" type="file" accept="application/json,.json" style="display:none" />
     </div>
 
-    <!-- Site title in the header: change the text if you rename the project currently hidden by selecting the same color as a background to make the page crisper.-->
-
     <h1>≡ Essential Assignment Tracker</h1>
-
-    <!-- Main navigation links. -->
 
     <div class="nav">
         <a href="index.html">Home</a>
@@ -198,22 +268,15 @@
 </div>
 
 <div class="content">
-    <!-- Page heading visible page title. -->
-
     <h1>About This Essential Assignment Tracker</h1>
 
-    <!-- Decorative Grad hat icon above the About section.-->
-
     <div class="icon">🎓</div>
-
 
     <div class="section">
         <p>
             This is a simple, personal Essential Assignment Tracker
             I built to help me stay organized during my university stint.
         </p>
-
-
 
         <p class="highlight">What it does:</p>
         <ul>
@@ -251,6 +314,7 @@
             <li>Reminders or notifications (maybe later in part 2…)</li>
         </ul>
     </div>
+
     <a href="index.html" class="back-bottom">← Back to Home</a>
 
     <div class="footer-note">
@@ -261,8 +325,7 @@
 </body>
 <script src="../js/backup-button.js"></script>
 <script>
-    // Fallback: This is the backup button fallback if the external script failed to initialize for any unforeseen reason,
-
+    // Fallback script remains unchanged
     (function(){
         setTimeout(function(){
             if(window.backupButtonInitialized) return;

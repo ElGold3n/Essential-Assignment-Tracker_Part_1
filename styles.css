@@ -1,0 +1,83 @@
+/* styles.css - Full-page respecting dark mode */
+
+/* Tell browser the page supports both modes */
+:root {
+    color-scheme: light dark;
+}
+
+/* Light mode defaults (explicit so nothing stays white by accident) */
+:root {
+    --bg-page:    #ffffff;
+    --text:       #111111;
+    --bg-card:    #f8f9fa;
+    --bg-header:  #f0f0f0;
+    --border:     #e0e0e0;
+    --link:       #0066cc;
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-page:    #0d1117;     /* GitHub-like dark (or use #121212) */
+        --text:       #e0e0e0;
+        --bg-card:    #161b22;
+        --bg-header:  #0d1117;
+        --border:     #30363d;
+        --link:       #58a6ff;
+    }
+}
+
+/* Apply variables everywhere important */
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: var(--bg-page);
+    color: var(--text);
+    font-family: system-ui, sans-serif;
+}
+
+/* Make sure containers don't override with light colors */
+header, .header,
+main, .content,
+footer,
+.card, section, article,
+table, .table {
+    background: var(--bg-card);
+    border-color: var(--border);
+}
+
+/* Table improvements */
+th {
+    background: color-mix(in srgb, var(--bg-card) 90%, black);
+    color: var(--text);
+}
+
+tr:hover {
+    background: color-mix(in srgb, var(--bg-card) 80%, var(--text) 20%);
+}
+
+/* Status badges (your original colors adapted) */
+.status-due     { background: #4a3f00; color: #ffcc00; }
+.status-overdue { background: #4a1c1c; color: #ff6b6b; }
+.status-done    { background: #1e3a2e; color: #4caf50; }
+.status-normal  { background: #333333; color: #cccccc; }
+
+/* Buttons */
+.add-btn {
+    background: #2e7d32;
+    color: white;
+}
+.add-btn:hover {
+    background: #388e3c;
+}
+
+/* Links */
+a {
+    color: var(--link);
+}
+
+/* Optional: force full coverage if you have sticky footers or hero sections */
+* {
+    box-sizing: border-box;
+}
