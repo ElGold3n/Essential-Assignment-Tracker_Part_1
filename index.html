@@ -95,7 +95,7 @@
 
         /* Main section heading */
 
-        h2 { color: #270f2b; margin: 0 0 15px; }
+        h2 { color: #b411cf; margin: 0 0 15px; }
 
         /* Search and filter controls layout */
 
@@ -176,7 +176,62 @@
 
         /* Button color change on hover */
 
-        .add-btn:hover { background: #17cdbd; }
+        .add-btn:hover { background: #218838; }
+
+        /*******************************************************************************/
+
+        /* Automatic dark mode CSS – activates if a user has dark theme enabled on OS */
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #121212;
+                color: #e0e0e0;
+            }
+
+            .header {
+                background: #1a1a1a;
+            }
+
+            .content,
+            .card,
+            table {
+                background: #1e1e1e;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+            }
+
+            th {
+                background: #2d2d2d;
+                color: #bbbbbb;
+            }
+
+            tr:hover {
+                background: #2a2a2a;
+            }
+
+            .status-due {
+                background: #4a3f00;
+                color: #ffcc00;
+            }
+            .status-overdue {
+                background: #4a1c1c;
+                color: #ff6b6b;
+            }
+            .status-done {
+                background: #1e3a2e;
+                color: #4caf50;
+            }
+            .status-normal {
+                background: #333333;
+                color: #cccccc;
+            }
+
+            .add-btn {
+                background: #2e7d32;
+            }
+            .add-btn:hover {
+                background: #388e3c;
+            }
+        }
 
     </style>
     <!-- CSS Stylesheet ends for the home page -->
